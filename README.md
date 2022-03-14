@@ -1,14 +1,40 @@
-# Project
+# RouterOS Scanner
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+Forensics tool for Mikrotik devices. Search for suspicious properties and weak security points that need to be fixed on the router.
 
-As the maintainer of this project, please make a few updates:
+This tool’s functionalities include the following: 
+- Get the version of the device and map it to CVEs 
+- Check for scheduled tasks 
+- Look for traffic redirection rules 
+- Look for DNS cache poisoning 
+- Look for default ports change 
+- Look for non-default users 
+- Look for suspicious files
+- Look for proxy, socks and FW rules
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+## Executing and arguments
+	
+### The arguments:
+
+ **args** | **Description**							                        | **Must / Optional**
+----------| ----------------------------------------------------------------| -------------------
+`-i`	  | The tested Mikrotik IP address			                        | Must
+`-p`	  | The tested Mikrotik SSH port			                        | Must
+`-u`	  | User name with admin Permissions		                        | Must
+`-ps`     | The password of the given user name	(empty password by defoult)	| Optional
+`-J`	  | Print the results as json format (prints txt format by defoult)	| Optional
+
+### executing examples:
+	 ./main.py -i 1.2.3.4 -p 22 -u admin
+	 ./main.py -i 1.2.3.4 -p 2000 -u admin -ps 123456
+	 ./main.py -i 1.2.3.4 -p 2000 -u admin -ps 123456 -J
+
+### output:
+The output includes 3 sections for each test:
+1. raw data - all the data we search in.
+2. suspicious - things we found out as suspicious and recommends checking if they are legitimate or malicious.
+3. recommendation - things we found out as weak security points and recommends to fix.
+
 
 ## Contributing
 
