@@ -24,12 +24,12 @@ This tool’s functionalities include the following:
 `-ps`     | The password of the given user name	(empty password by defoult)	| Optional
 `-J`	  | Print the results as json format (prints txt format by defoult)	| Optional
 
-### executing examples:
+### Executing examples:
 	 ./main.py -i 1.2.3.4 -p 22 -u admin
 	 ./main.py -i 1.2.3.4 -p 2000 -u admin -ps 123456
 	 ./main.py -i 1.2.3.4 -p 2000 -u admin -ps 123456 -J
 
-### output:
+### Output:
 The output includes 3 sections for each test:
 1. raw data - all the data we search in.
 2. suspicious - things we found out as suspicious and recommends checking if they are legitimate or malicious.
