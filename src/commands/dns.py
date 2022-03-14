@@ -1,0 +1,38 @@
+from commands.basecommand import BaseCommand
+
+
+class DNS(BaseCommand):
+    def __init__(self):
+        self.__name__ = 'DNS Cache'
+
+    def run_ssh(self, sshc):
+        data = self._ssh_data(sshc, '/ip dns print')
+        enabled = 'allow-remote-requests: yes' in data.lower()
+
+        res = self._ssh_data_with_header(sshc, '/ip dns cache print detail')
+        sus_dns, recommendation = self.check_results_ssh(res, enabled)
+
+        return {'raw_data': res,
+                'suspicious': sus_dns,
+                'recommendation': recommendation}
+
+    def check_results_ssh(self, res, enabled):
+        sus_dns = []
+        recommendation = []
+
+        for item in res:
+            if int(item['ttl'].partition('s')[0]) > 200000:
+                sus_dns.append(f'Domain name: {item["name"]} with ip {item["address"]}: might be DNS poisoning- '
+                               f'severity: high')
+
+        if enabled:
+            recommendation.append('In case DNS cache is not required on your router - disable it')
+
+        return sus_dns, recommendation
+
+
+
+
+
+
+
