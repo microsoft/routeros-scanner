@@ -51,9 +51,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--ip', help='The tested Mikrotik IP address', required=True)
     parser.add_argument('-p', '--port', help='The tested Mikrotik SSH port', required=True)
-    parser.add_argument('-u', '--userName', help='User name of user with admin Permissions', required=True)
-    parser.add_argument('-ps', '--password', help='the password of the given user name', default='')
-    parser.add_argument('-J', help='print the results as json format', action='store_true')
+    parser.add_argument('-u', '--userName', help='User name with admin Permissions', required=True)
+    parser.add_argument('-ps', '--password', help='The password of the given user name', default='')
+    parser.add_argument('-J', help='Print the results as json format', action='store_true')
     args = parser.parse_args()
 
     main(args)
