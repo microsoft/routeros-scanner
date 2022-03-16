@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 class BaseCommand(object):
     def _ssh_data(self, sshc, command):
         stdin, stdout, stderr = sshc.exec_command(command)

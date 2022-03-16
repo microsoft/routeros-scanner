@@ -1,10 +1,6 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Mar 10 17:50:49 2022
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
 
-@author: datch
-"""
 import json
 
 class Comparison(object):

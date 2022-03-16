@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 from commands.basecommand import BaseCommand
 from ipaddress import ip_address
 
