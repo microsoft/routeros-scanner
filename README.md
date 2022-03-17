@@ -21,8 +21,8 @@ This tool’s functionalities include the following:
 `-i`	  | The tested Mikrotik IP address			                        | Must
 `-p`	  | The tested Mikrotik SSH port			                        | Must
 `-u`	  | User name with admin Permissions		                        | Must
-`-ps`     | The password of the given user name	(empty password by defoult)	| Optional
-`-J`	  | Print the results as json format (prints txt format by defoult)	| Optional
+`-ps`     | The password of the given user name	(empty password by default)	| Optional
+`-J`	  | Print the results as json format (prints txt format by default)	| Optional
 
 ### Executing examples:
 	 ./main.py -i 1.2.3.4 -p 22 -u admin
@@ -32,8 +32,8 @@ This tool’s functionalities include the following:
 ### Output:
 The output includes 3 sections for each test:
 1. raw data - all the data we search in.
-2. suspicious - things we found out as suspicious and recommends checking if they are legitimate or malicious.
-3. recommendation - things we found out as weak security points and recommends to fix.
+2. suspicious - things we found out as suspicious and recommend checking if they are legitimate or malicious.
+3. recommendation - things we found out as weak security points and recommend to fix.
 
 
 ## Contributing
