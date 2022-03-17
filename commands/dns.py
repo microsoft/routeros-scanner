@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 from commands.basecommand import BaseCommand
-
+from util.parse_ttl import parse_ttl
 
 class DNS(BaseCommand):
     def __init__(self):
@@ -24,7 +24,8 @@ class DNS(BaseCommand):
         recommendation = []
 
         for item in res:
-            if int(item['ttl'].partition('s')[0]) > 200000:
+            item['parsed_ttl'] = parse_ttl(item['ttl'])
+            if item['parsed_ttl'] > 200000:
                 sus_dns.append(f'Domain name: {item["name"]} with ip {item["address"]}: might be DNS poisoning- '
                                f'severity: high')
 
