@@ -14,7 +14,6 @@ def get_value(S, i):
 def to_integer(dt_time):
     # code for parsing dt_time
     parse_list = re.split("[w,d,h,m,s]+",dt_time)
-    print(parse_list)
     return (get_value(parse_list,0)*7+get_value(parse_list,1))*1000000 + get_value(parse_list,2)*10000  +  get_value(parse_list,3)*100 + get_value(parse_list,4)
 
 class DNS(BaseCommand):
