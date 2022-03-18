@@ -23,6 +23,7 @@ This tool’s functionalities include the following:
 `-u`	  | User name with admin Permissions		                        | Must
 `-ps`     | The password of the given user name	(empty password by defoult)	| Optional
 `-J`	  | Print the results as json format (prints txt format by defoult)	| Optional
+`-concise`| Print a shortened text output focusing on recommendations       | Optional
 
 ### Executing examples:
 	 ./main.py -i 1.2.3.4 -p 22 -u admin
