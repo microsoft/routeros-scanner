@@ -19,12 +19,39 @@ class DNS(BaseCommand):
                 'suspicious': sus_dns,
                 'recommendation': recommendation}
 
+
+    def __time_to_seconds(self, item):
+            ttl = item['ttl']
+            total_seconds = 0
+            _ = ttl
+            if 'd' in _:
+                days, _ = _.split('d')
+                total_seconds += int(days) * 86400 
+            if 'h' in _:
+                hours, _ = _.split('h')
+                total_seconds +=  int(hours) * 3600
+            if 'm' in _:
+                minutes, _ = _.split('m')
+                total_seconds +=  int(minutes) * 60
+            if 's' in _:
+                seconds, _ = _.split('s')
+                total_seconds +=  int(seconds)
+            return total_seconds
+        
     def check_results_ssh(self, res, enabled):
         sus_dns = []
         recommendation = []
 
         for item in res:
-            if int(item['ttl'].partition('s')[0]) > 200000:
+            seconds = self.__time_to_seconds(item)
+            
+            if  "address" not in item:
+                item['address'] = item.get("data")
+            
+            if not item.get("name",""):
+                item["name"] = item.get("data")
+                
+            if seconds> 200000:                
                 sus_dns.append(f'Domain name: {item["name"]} with ip {item["address"]}: might be DNS poisoning- '
                                f'severity: high')
 
