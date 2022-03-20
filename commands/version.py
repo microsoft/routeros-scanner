@@ -18,7 +18,7 @@ class Version(BaseCommand):
 
         if version_reg:
             version = version_reg.group(1)
-            res = f'The Mikrotik version: {version}'
+            res = f'RouterOS version: {version}'
 
         sus_dns, recommendation = self.check_results_ssh(version)
 

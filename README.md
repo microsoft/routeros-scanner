@@ -19,15 +19,16 @@ This tool’s functionalities include the following:
  **args** | **Description**							                        | **Must / Optional**
 ----------| ----------------------------------------------------------------| -------------------
 `-i`	  | The tested Mikrotik IP address			                        | Must
-`-p`	  | The tested Mikrotik SSH port			                        | Must
+`-p`	  | The tested Mikrotik SSH port			                        | Optional
 `-u`	  | User name with admin Permissions		                        | Must
-`-ps`     | The password of the given user name	(empty password by defoult)	| Optional
-`-J`	  | Print the results as json format (prints txt format by defoult)	| Optional
+`-ps`     | The password of the given user name	(empty password by default)	| Optional
+`-J`	  | Print the results as json format (prints txt format by default)	| Optional
 
 ### Executing examples:
-	 ./main.py -i 1.2.3.4 -p 22 -u admin
-	 ./main.py -i 1.2.3.4 -p 2000 -u admin -ps 123456
-	 ./main.py -i 1.2.3.4 -p 2000 -u admin -ps 123456 -J
+	 ./main.py -i 192.168.88.1 -u admin
+	 ./main.py -i 192.168.88.1 -p 22 -u admin
+	 ./main.py -i 192.168.88.1 -p 2000 -u admin -ps 123456
+	 ./main.py -i 192.168.88.1 -p 2000 -u admin -ps 123456 -J
 
 ### Output:
 The output includes 3 sections for each test:
