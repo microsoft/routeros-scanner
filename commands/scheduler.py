@@ -1,8 +1,10 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
+import traceback
+import re
+import sys
 
 from commands.basecommand import BaseCommand
-import re
 
 
 class Scheduler(BaseCommand):
@@ -21,10 +23,13 @@ class Scheduler(BaseCommand):
         sus_tasks = []
         recommendation = []
 
-        for item in res:
-            if (re.match(r'u\d+$', item['name'].lower())) or (('/tool fetch' in item['on-event']) or
-                                                              ('url' in item['on-event']) or ('http' in item['on-event'])):
-                sus_tasks.append(f'Task name: {item["name"]}, executes: {item["on-event"]} - severity: high')
+        try:
+            for item in res:
+                if (re.match(r'u\d+$', item['name'].lower())) or (('/tool fetch' in item['on-event']) or
+                                                                  ('url' in item['on-event']) or ('http' in item['on-event'])):
+                    sus_tasks.append(f'Task name: {item["name"]}, executes: {item["on-event"]} - severity: high')
+        except Exception:
+            print(traceback.format_exc(), file = sys.stderr)
 
         return sus_tasks, recommendation
 

@@ -1,8 +1,10 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
+import traceback
+from ipaddress import ip_address
+import sys
 
 from commands.basecommand import BaseCommand
-from ipaddress import ip_address
 
 
 class FWNat(BaseCommand):
@@ -21,11 +23,14 @@ class FWNat(BaseCommand):
         sus_nat = []
         recommendation = []
 
-        for item in res:
-            if (item['action'] == 'dst-nat') and ('dst-address' in item) and ('to-address' in item):
-                if (not ip_address(item['dst-address']).is_private) and (not ip_address(item['to-address']).is_private):
-                    sus_nat.append(f'dst-nat rule from {item["dst-address"]} to {item["to-address"]}: both are public '
-                                   f'IPs, might used for malicious activity - severity: high')
+        try:
+            for item in res:
+                if (item['action'] == 'dst-nat') and ('dst-address' in item) and ('to-address' in item):
+                    if (not ip_address(item['dst-address']).is_private) and (not ip_address(item['to-address']).is_private):
+                        sus_nat.append(f'dst-nat rule from {item["dst-address"]} to {item["to-address"]}: both are public '
+                                       f'IPs, might used for malicious activity - severity: high')
+        except Exception:
+            print(traceback.format_exc(), file = sys.stderr)
 
         return sus_nat, recommendation
 

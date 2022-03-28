@@ -1,5 +1,7 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
+import traceback
+import sys
 
 from commands.basecommand import BaseCommand
 
@@ -20,10 +22,13 @@ class Files(BaseCommand):
         sus_files = []
         recommendation = []
 
-        for item in res:
-            if 'contents' in item:
-                if ('/tool fetch' in item['contents']) or ('http://' in item['contents']):
-                    sus_files.append(f'File name: {item["name"]}, content: {item["contents"]} - severity: high')
+        try:
+            for item in res:
+                if 'contents' in item:
+                    if ('/tool fetch' in item['contents']) or ('http://' in item['contents']):
+                        sus_files.append(f'File name: {item["name"]}, content: {item["contents"]} - severity: high')
+        except Exception:
+            print(traceback.format_exc(), file = sys.stderr)
 
         return sus_files, recommendation
 

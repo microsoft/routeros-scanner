@@ -1,9 +1,11 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
+import traceback
+import re
+import sys
 
 from commands.basecommand import BaseCommand
 from nvd import CVEValidator
-import re
 
 
 class Version(BaseCommand):
@@ -14,11 +16,15 @@ class Version(BaseCommand):
         version = ''
         res = ''
         data = self._ssh_data(sshc, '/system resource print')
-        version_reg = re.search(r'version: ([\d\.]+)', data)
 
-        if version_reg:
-            version = version_reg.group(1)
-            res = f'The Mikrotik version: {version}'
+        try:
+            version_reg = re.search(r'version: ([\d\.]+)', data)
+
+            if version_reg:
+                version = version_reg.group(1)
+                res = f'The Mikrotik version: {version}'
+        except Exception:
+            print(traceback.format_exc())
 
         sus_dns, recommendation = self.check_results_ssh(version)
 
@@ -30,11 +36,14 @@ class Version(BaseCommand):
         sus_version = []
         recommendation = []
 
-        if res:
-            cve = CVEValidator('./assets/mikrotik_cpe_match.json')
-            ver_cves = cve.check_version(res)
-            if ver_cves:
-                sus_version = ver_cves
+        try:
+            if res:
+                cve = CVEValidator('./assets/mikrotik_cpe_match.json')
+                ver_cves = cve.check_version(res)
+                if ver_cves:
+                    sus_version = ver_cves
+        except Exception:
+            print(traceback.format_exc(), file = sys.stderr)
 
         return sus_version, recommendation
 
