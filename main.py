@@ -25,7 +25,8 @@ def main(args):
 
     with paramiko.SSHClient() as ssh_client:
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh_client.connect(hostname=args.ip, port=args.port, username=args.userName, password=args.password)
+        ssh_client.connect(hostname=args.ip, port=args.port, username=args.userName, password=args.password,
+        look_for_keys=False, allow_agent=False)
 
         for command in commands:
             res = command.run_ssh(ssh_client)
