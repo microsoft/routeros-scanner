@@ -13,6 +13,11 @@ This tool’s functionalities include the following:
 - Look for proxy, socks and FW rules
 
 ## Executing and arguments
+
+This tool requires Python 3.8 or later. 
+
+# Install required Python packages
+`pip install -r requirements.txt`
 	
 ### The arguments:
  **args** | **Description**							                                      | **Must / Optional**
@@ -32,8 +37,8 @@ This tool’s functionalities include the following:
 ### Output:
 The output includes 3 sections for each test:
 1. raw data - all the data we search in.
-2. suspicious - things we found out as suspicious and recommend checking if they are legitimate or malicious.
-3. recommendation - things we found out as weak security points and recommend to fix.
+2. suspicious - things we found out as suspicious - should be checked if they are legitimate or malicious.
+3. recommendation - things we found out as weak security points and recommendations for fixing them.
 
 
 ## Contributing
