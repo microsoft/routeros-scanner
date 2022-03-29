@@ -16,7 +16,7 @@ This tool’s functionalities include the following:
 
 This tool requires Python 3.8 or later. 
 
-# Install required Python packages
+### Install required Python packages
 `pip install -r requirements.txt`
 	
 ### The arguments:
