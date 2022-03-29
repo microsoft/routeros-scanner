@@ -11,8 +11,8 @@ class Version(BaseCommand):
         self.__name__ = 'Version'
 
     def run_ssh(self, sshc):
+        version = ''
         data = self._ssh_data(sshc, ':put [/system resource get version]')
-        
         version_reg = re.search(r'([\d\.]+)', data)
 
         if version_reg:
@@ -20,7 +20,7 @@ class Version(BaseCommand):
 
         sus, recommendation = self.check_results_ssh(version)
 
-        return {'raw_data': data,
+        return {'raw_data': version,
                 'suspicious': sus,
                 'recommendation': recommendation}
 
@@ -33,7 +33,7 @@ class Version(BaseCommand):
             ver_cves = cve.check_version(version)
             if ver_cves:
                 sus_version = ver_cves
-                recommendation.append(f'Mikrotik version: {version} is vulnerable to CVE(s). Upgrade to the latest version.')
+                recommendation.append(f'RouterOS version: {version} is vulnerable to CVE(s). Upgrade to the latest version.')
 
         return sus_version, recommendation
 

@@ -4,7 +4,6 @@
 import argparse
 import json
 import paramiko
-from pprint import pprint
 
 from commands.fwnat import FWNat
 from commands.dns import DNS
@@ -39,20 +38,18 @@ def main(args):
 
 def print_txt_results(res, concise):
     for command in res:
-        command_printed = False
-        for item in res[command]:
-            if concise and item != "recommendation" and item != "suspicious":
-                    continue     
-            if res[command][item]:
-                if not command_printed: print(f'{command}:')
-                command_printed = True
-
-                print(f'\t{item}:')
-                if type(res[command][item]) == list:
-                    data = '\n\t\t'.join(json.dumps(i) for i in res[command][item])
-                else:
-                    data = res[command][item]
-                print(f'\t\t{data}')
+        if (not concise and res[command]["raw_data"]) or res[command]["recommendation"] or res[command]["suspicious"]:
+            print(f'{command}:')
+            for item in res[command]:
+                if concise and item != "recommendation" and item != "suspicious":
+                        continue
+                if res[command][item]:
+                    print(f'\t{item}:')
+                    if type(res[command][item]) == list:
+                        data = '\n\t\t'.join(json.dumps(i) for i in res[command][item])
+                    else:
+                        data = res[command][item]
+                    print(f'\t\t{data}')
 
 
 if __name__ == '__main__':
