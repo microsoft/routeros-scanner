@@ -31,7 +31,7 @@ class DNS(BaseCommand):
                 if self.calc_sec(item['ttl']) > 200000:
                     address_key = "address"
                     if "data" in item:
-                        address_key = "data" #as seen in RouterOs T.D.L
+                        address_key = "data" #as seen in RouterOs 7.x
 
                     sus_dns.append(f'Domain name: {item["name"]} with ip {item[address_key]}: might be DNS poisoning - '
                                    f'severity: high')
