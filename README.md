@@ -15,7 +15,6 @@ This tool’s functionalities include the following:
 ## Executing and arguments
 	
 ### The arguments:
-
  **args** | **Description**							                                      | **Must / Optional**
 ----------| ------------------------------------------------------------------------------| -------------------
 `-i`	  | The tested Mikrotik IP address			                                      | Must

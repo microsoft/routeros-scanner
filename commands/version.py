@@ -21,6 +21,7 @@ class Version(BaseCommand):
 
             if version_reg:
                 version = version_reg.group(1)
+
         except Exception:
             print(traceback.format_exc())
 
