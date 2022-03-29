@@ -1,25 +1,15 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
-
-import time
+import traceback
 import re
+import sys
 
 from commands.basecommand import BaseCommand
 
+
 class DNS(BaseCommand):
     def __init__(self):
-        self.rx = re.compile('(\d+d)?(\d+h)?(\d+m)?(\d+s)?')
         self.__name__ = 'DNS Cache'
-
-    def get_seconds(self, ttl):
-        groups = self.rx.match(ttl).groups()
-        d=0 if not groups[0] else int(groups[0][:-1])
-        h=0 if not groups[1] else int(groups[1][:-1])
-        m=0 if not groups[2] else int(groups[2][:-1])
-        s=0 if not groups[3] else int(groups[3][:-1])
-        h=h+(d*24)
-        s=s+(m*60)+(h*3600)
-        return s
 
     def run_ssh(self, sshc):
         data = self._ssh_data(sshc, '/ip dns print')
@@ -36,12 +26,32 @@ class DNS(BaseCommand):
         sus_dns = []
         recommendation = []
 
-        for item in res:
-            if self.get_seconds(item['ttl']) > 200000:
-                sus_dns.append(f'Domain name: {item["name"]} with ip {item["data"]}: might be DNS poisoning- '
-                               f'severity: high')
+        try:
+            for item in res:
+                if self.calc_sec(item['ttl']) > 200000:
+                    address_key = "address"
+                    if "data" in item:
+                        address_key = "data" #as seen in RouterOs 7.x
+
+                    sus_dns.append(f'Domain name: {item["name"]} with ip {item[address_key]}: might be DNS poisoning - '
+                                   f'severity: high')
+        except Exception:
+            print(traceback.format_exc(), file = sys.stderr)
 
         if enabled:
             recommendation.append('In case DNS cache is not required on your router - disable it')
 
         return sus_dns, recommendation
+
+    def calc_sec(self, ttl):
+        to_sec = {'s': 1, 'm': 60, 'h':3600, 'd':86400, 'w': 604800}
+        time = re.findall(r"(\d+)([a-z])", ttl)
+        return sum(list(map(lambda item: int(item[0]) * to_sec[item[1]], time)))
+
+
+
+
+
+
+
+

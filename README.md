@@ -15,14 +15,15 @@ This tool’s functionalities include the following:
 ## Executing and arguments
 	
 ### The arguments:
+ **args** | **Description**							                                      | **Must / Optional**
+----------| ------------------------------------------------------------------------------| -------------------
+`-i`	  | The tested Mikrotik IP address			                                      | Must
+`-p`	  | The tested Mikrotik SSH port			                                      | Optional
+`-u`	  | User name with admin Permissions		                                      | Must
+`-ps`     | The password of the given user name	(empty password by default)	              | Optional
+`-J`	  | Print the results as json format (prints txt format by default)	              | Optional
+`-concise`| Print a shortened text output focusing on recommendations and suspicious data | Optional
 
- **args** | **Description**							                        | **Must / Optional**
-----------| ----------------------------------------------------------------| -------------------
-`-i`	  | The tested Mikrotik IP address			                        | Must
-`-p`	  | The tested Mikrotik SSH port			                        | Optional
-`-u`	  | User name with admin Permissions		                        | Must
-`-ps`     | The password of the given user name	(empty password by default)	| Optional
-`-J`	  | Print the results as json format (prints txt format by default)	| Optional
 
 ### Executing examples:
 	 ./main.py -i 192.168.88.1 -u admin
@@ -33,8 +34,8 @@ This tool’s functionalities include the following:
 ### Output:
 The output includes 3 sections for each test:
 1. raw data - all the data we search in.
-2. suspicious - things we found out as suspicious and recommends checking if they are legitimate or malicious.
-3. recommendation - things we found out as weak security points and recommends to fix.
+2. suspicious - things we found out as suspicious and recommend checking if they are legitimate or malicious.
+3. recommendation - things we found out as weak security points and recommend to fix.
 
 
 ## Contributing
