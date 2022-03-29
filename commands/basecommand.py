@@ -6,13 +6,14 @@ import sys
 
 class BaseCommand(object):
     def _ssh_data(self, sshc, command):
+        res = ''
         try:
             stdin, stdout, stderr = sshc.exec_command(command)
-
-            return str(stdout.read())
+            res = str(stdout.read())
         except Exception:
             print(traceback.format_exc(), file = sys.stderr)
-            return ''
+
+        return res
 
     def _ssh_data_with_header(self, sshc, command):
         data = self._ssh_data(sshc, command)

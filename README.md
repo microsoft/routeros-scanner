@@ -15,14 +15,14 @@ This tool’s functionalities include the following:
 ## Executing and arguments
 	
 ### The arguments:
-
- **args** | **Description**							                        | **Must / Optional**
-----------| ----------------------------------------------------------------| -------------------
-`-i`	  | The tested Mikrotik IP address			                        | Must
-`-p`	  | The tested Mikrotik SSH port			                        | Must
-`-u`	  | User name with admin Permissions		                        | Must
-`-ps`     | The password of the given user name	(empty password by default)	| Optional
-`-J`	  | Print the results as json format (prints txt format by default)	| Optional
+ **args** | **Description**							                                      | **Must / Optional**
+----------| ------------------------------------------------------------------------------| -------------------
+`-i`	  | The tested Mikrotik IP address			                                      | Must
+`-p`	  | The tested Mikrotik SSH port			                                      | Must
+`-u`	  | User name with admin Permissions		                                      | Must
+`-ps`     | The password of the given user name	(empty password by default)	              | Optional
+`-J`	  | Print the results as json format (prints txt format by default)	              | Optional
+`-concise`| Print a shortened text output focusing on recommendations and suspicious data | Optional
 
 ### Executing examples:
 	 ./main.py -i 1.2.3.4 -p 22 -u admin
