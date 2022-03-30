@@ -41,7 +41,7 @@ class Version(BaseCommand):
                 ver_cves = cve.check_version(version)
                 if ver_cves:
                     sus_version = ver_cves
-                    recommendation.append(f'RouterOS version: {version} is vulnerable to CVE(s). Upgrade to the latest version.')
+                    recommendation.append(f'RouterOS version: {version} is vulnerable to CVE(s). Upgrade to the latest version. (The CVEs list is from NVD)')
         except Exception:
             print(traceback.format_exc(), file = sys.stderr)
 
