@@ -1,5 +1,7 @@
 # RouterOS Scanner
 
+<img src='https://github.com/microsoft/routeros-scanner/blob/main/assets/img/section52.png' img align='right' width='100' height='100'/>
+
 Forensics tool for Mikrotik devices. Search for suspicious properties and weak security points that need to be fixed on the router.
 
 This tool’s functionalities include the following: 
@@ -28,6 +30,7 @@ This tool requires Python 3.8 or later.
 `-ps`      | The password of the given user name	(empty password by default)	           | Optional
 `-J`	   | Print the results as json format (prints txt format by default)	           | Optional
 `-concise` | Print a shortened text output focusing on recommendations and suspicious data | Optional
+`-update`  | Update the CVE Json file (the file is updated automatically if it hasn't been updated in the last month)| Optional
 
 ### Executing examples:
 	 ./main.py -i 192.168.88.1 -u admin
@@ -40,6 +43,14 @@ The output includes 3 sections for each test:
 1. raw data - all the data we search in.
 2. suspicious - things we found out as suspicious - should be checked if they are legitimate or malicious.
 3. recommendation - things we found out as weak security points and recommendations for fixing them.
+
+## More info & solution:
+Researchers developed this forensic tool while investigating how MikroTik devices are used in Trickbot C2 infrastructure. 
+You can read more about the research [here](https://www.microsoft.com/security/blog/2022/03/16/uncovering-trickbots-use-of-iot-devices-in-command-and-control-infrastructure/)
+
+[Microsoft Defender for IoT](https://azure.microsoft.com/en-us/services/iot-defender/#overview) is an agentless network-layer security solution that allows 
+organizations to continuously monitor and discover assets, detect threats, and manage vulnerabilities in their IoT/OT 
+and Industrial Control Systems (ICS) devices, on-premises and in Azure-connected environments.
 
 ## Contributing
 

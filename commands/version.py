@@ -2,10 +2,13 @@
 # Licensed under the MIT License.
 import traceback
 import re
+import os
 import sys
 
 from commands.basecommand import BaseCommand
 from nvd import CVEValidator
+
+CVES_PATH = './assets/mikrotik_cpe_match.json'
 
 
 class Version(BaseCommand):
@@ -36,8 +39,8 @@ class Version(BaseCommand):
         recommendation = []
 
         try:
-            if version:
-                cve = CVEValidator('./assets/mikrotik_cpe_match.json')
+            if version and os.path.isfile(CVES_PATH):
+                cve = CVEValidator(CVES_PATH)
                 ver_cves = cve.check_version(version)
                 if ver_cves:
                     sus_version = ver_cves
