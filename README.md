@@ -1,6 +1,7 @@
-# RouterOS Scanner
+<img src='https://github.com/microsoft/routeros-scanner/blob/main/assets/img/section52.png' img align='right' width='333' height='100'/>
+<br/>
 
-<img src='https://github.com/microsoft/routeros-scanner/blob/main/assets/img/section52.png' img align='right' width='100' height='100'/>
+# RouterOS Scanner
 
 Forensics tool for Mikrotik devices. Search for suspicious properties and weak security points that need to be fixed on the router.
 
