@@ -47,7 +47,7 @@ The output includes 3 sections for each test:
 
 ## More info & solution:
 Researchers developed this forensic tool while investigating how MikroTik devices are used in Trickbot C2 infrastructure. 
-You can read more about the research [here](https://www.microsoft.com/security/blog/2022/03/16/uncovering-trickbots-use-of-iot-devices-in-command-and-control-infrastructure/)
+You can read more about the research [here](https://www.microsoft.com/security/blog/2022/03/16/uncovering-trickbots-use-of-iot-devices-in-command-and-control-infrastructure/).
 
 [Microsoft Defender for IoT](https://azure.microsoft.com/en-us/services/iot-defender/#overview) is an agentless network-layer security solution that allows 
 organizations to continuously monitor and discover assets, detect threats, and manage vulnerabilities in their IoT/OT 
