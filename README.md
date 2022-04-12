@@ -1,4 +1,4 @@
-<img src='https://github.com/microsoft/routeros-scanner/blob/main/assets/img/section52.png' img align='right' width='333' height='100'/>
+<img src='https://github.com/microsoft/routeros-scanner/blob/main/assets/img/section52.png' img align='right' width='377' height='100'/>
 <br/>
 
 # RouterOS Scanner
