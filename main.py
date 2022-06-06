@@ -37,7 +37,7 @@ def main(args):
     with paramiko.SSHClient() as ssh_client:
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh_client.connect(hostname=args.ip, port=args.port, username=args.userName, password=args.password,
-        look_for_keys=False, allow_agent=False)
+        look_for_keys=False, allow_agent=args.agent, disabled_algorithms=dict(pubkeys=["rsa-sha2-512", "rsa-sha2-256"]) if args.compatible_pubkey_algos else None)
 
         for command in commands:
             res = command.run_ssh(ssh_client)
@@ -113,6 +113,9 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--port', help='The tested Mikrotik SSH port', default='22')
     parser.add_argument('-u', '--userName', help='User name with admin Permissions', required=True)
     parser.add_argument('-ps', '--password', help='The password of the given user name', default='')
+    parser.add_argument('-a', '--agent', help='Try to use an SSH agent for key-based authentication', action='store_true')
+    # The following argument is necessary to deal with the issue described here: https://forum.mikrotik.com/viewtopic.php?t=157598
+    parser.add_argument('-c', '--compatible-pubkey-algos', help='Remove modern RSA-SHA2 pubkey authentication algorithms for compatibility', action='store_true')
     parser.add_argument('-J', help='Print the results as json format', action='store_true')
     parser.add_argument('-concise', help='Print out only suspicious items and recommendations', action='store_true')
     parser.add_argument('-update', help='Update the CVE Json file', action='store_true')
