@@ -16,6 +16,8 @@ steps:
     command: 'sign'
     signing_environment: 'azure-ado'
     search_root: '$(Build.SourcesDirectory)'
+    files_to_sign: '**/*.py;*.py'
+
 
 - task: CopyFiles@2
   inputs:
