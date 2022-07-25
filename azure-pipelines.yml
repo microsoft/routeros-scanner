@@ -18,7 +18,6 @@ steps:
     search_root: '$(Build.SourcesDirectory)'
     files_to_sign: '**/*.py;*.py'
 
-
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
