@@ -1,0 +1,56 @@
+environment:
+  host:
+    os: "linux"
+    flavor: "ubuntu"
+    version: "20.04"
+  runtime:
+    provider: "appcontainer"
+    image: "onebranch.azurecr.io/linux/ubuntu-2004:latest"
+    source_mode: "link"
+
+version:
+  name: "Main"
+  major: 1
+  minor: 0
+  tag: "alpha"
+  system: "patch"
+
+signing_options:
+  profile: 'internal_azure_service'
+  
+static_analysis_options:
+  binskim_options:
+    files_to_scan:
+  fxcop_options:
+    files_to_scan:
+  moderncop_options:
+    fail_on_error: false
+    files_to_scan: 
+  policheck_options:
+    disable_tool_scan: true
+    fail_on_error: false
+    files_to_scan:  
+      - from: 'src'
+        include:
+          - '**/*.py'
+
+restore:
+  commands:
+    - !!defaultcommand
+      name: "pip install"
+      command: "restore.sh"
+
+build:
+  commands: 
+
+package:
+  commands:
+
+test:
+  commands:
+
+publish:
+  commands:
+
+user_cleanup:
+  commands:
