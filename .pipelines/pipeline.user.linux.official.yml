@@ -1,35 +1,22 @@
 environment:
   host:
-    os: 'linux'
-    flavor: 'ubuntu'
-    version: '20.04'
+    os: "linux"
+    flavor: "ubuntu"
+    version: "20.04"
+  runtime:
+    provider: "appcontainer"
+    image: "onebranch.azurecr.io/linux/ubuntu-2004:latest"
+    source_mode: "link"
 
-# The following is a metadata section that describes the versioning scheme and basic version datacenter to use. This data will be used to
-# generate content in the .version folder for use by your custom versioning steps.
-# In fact, in this sample, a file named .version\PipelineAssemblyInfo.cs will be generated that contains the following code (ignore the actual
-# versions because those are dummy values).
-#
-# // This is a CDPX pipeline generated file
-# using System.Reflection;
-# [assembly: AssemblyVersion("1.0.060517.1000")]
-# [assembly: AssemblyFileVersion("1.0.060517.1000")]
-# [assembly: AssemblyInformationalVersion("1.0.060517.1000-test-31f791f1")]
-#
-# The key point is that this file is not checked in by CDPX. So, we check in a dummy file with similar content and add this file as a compile
-# item with a link. When the code is built in CDPX, the file is first overwritten with actual version numbers. Thus, when the code compiles,
-# the new version numbers are picked up.
-#
-# Obviously, this may not work for everyone. So, in addition to these template files, CDPX writes out several info files whose content is some
-# part of the version number. Which part is hinted at by the name of the file.
-# For example, package.semantic.info will contain patch semantic version number in the form 1.0.MMddyyrrrr-tag-commit.
 version:
-  name: 'Official'
-  tag: 'alpha'
-  system: 'custom'         # Must be one of patch, buildrevision, revisioncounter or custom. Other schemes can be added based on feedback.
-  exclude_commit: true            # Set this to true if you would like to exclude the commit hash from the build number.  Defaults to false.
+  name: "Main"
+  major: 1
+  minor: 0
+  tag: "alpha"
+  system: "patch"
 
 restore:
   commands:
     - !!defaultcommand
-      name: 'Install'
-      command: 'restore.sh'
+      name: "Install"
+      command: "restore.sh"
