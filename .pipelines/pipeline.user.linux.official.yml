@@ -15,8 +15,42 @@ version:
   tag: "alpha"
   system: "patch"
 
+signing_options:
+  profile: 'internal_azure_service'
+  
+static_analysis_options:
+  binskim_options:
+    files_to_scan:
+  fxcop_options:
+    files_to_scan:
+  moderncop_options:
+    fail_on_error: false
+    files_to_scan: 
+  policheck_options:
+    disable_tool_scan: true
+    fail_on_error: false
+    files_to_scan:  
+      - from: 'src'
+        include:
+          - '**/*.py'
+
 restore:
   commands:
     - !!defaultcommand
-      name: "Install"
+      name: "pip install"
       command: "restore.sh"
+
+build:
+  commands: 
+
+package:
+  commands:
+
+test:
+  commands:
+
+publish:
+  commands:
+
+user_cleanup:
+  commands:
